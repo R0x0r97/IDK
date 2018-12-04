@@ -1,2 +1,5 @@
 .vscode/settings.json
 *.png
+__pycache__
+*.txt
+main.py

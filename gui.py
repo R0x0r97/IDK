@@ -1,6 +1,7 @@
 '''
 GUI class
 '''
+from evaluate import evaluate_input as ev
 
 from kivy.app import App
 from kivy.core.window import Window
