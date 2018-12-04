@@ -1,2 +1,4 @@
 .vscode/settings.json
 *.png
+__pycache__
+matrix.txt

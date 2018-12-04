@@ -8,9 +8,8 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.stencilview import StencilView
-from kivy.graphics import Ellipse, Line
-from kivy.graphics.context_instructions import Color 
-from kivy.graphics.vertex_instructions import Rectangle
+from kivy.graphics import *
+from formatting import * 
 
 from kivy.lang import Builder
 
@@ -38,9 +37,9 @@ class GuiCanvas(StencilView):
     #Start drawing the line
     def on_touch_down(self, touch):
         with self.canvas:
-            Color(1, 0, 0) #red
+            Color(0, 0, 0) #red
             #Draw a line
-            touch.ud['line'] = Line(points=(touch.x, touch.y))
+            touch.ud['line'] = Line(points=(touch.x, touch.y),width = 5)
     #Draw that line while mouse is clicked
     def on_touch_move(self, touch):
         touch.ud['line'].points += [touch.x, touch.y]
@@ -53,6 +52,7 @@ class GuiRunnerApp(App):
     def save_canvas(self, obj):
         self.wid.export_to_png("number.png")
         #Peter's script should be called here
+        imageToMatrix("number.png")
         #Andras's script should be called here
         #This label shows the output from (Varga) Andras's script
         self.output_label.text = "1" #Hardcoded "1" for now
