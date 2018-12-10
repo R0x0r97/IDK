@@ -1,13 +1,6 @@
-'''
-This module's code was mostly took from: 
-https://github.com/markjay4k/Tensorflow-Basics-Series/blob/master/part%202%20-%20Logistic%20Regression.ipynb
-
-'''
-
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
-import time
 
 # Import MNIST data
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
@@ -21,7 +14,7 @@ for img, label, ax in zip(x_train[:4], y_train[:4], axes):
     ax.axis('off')
 plt.show();
 '''
-#rand
+
 # data shape
 '''
 print(f'train images: {x_train.shape}')
@@ -34,15 +27,15 @@ print(f' test labels: {y_test.shape}')
 x_train = x_train.reshape(60000, 784) / 255
 x_test = x_test.reshape(10000, 784) / 255
 
-with tf.Session() as sess:
-    y_train = sess.run(tf.one_hot(y_train, 10))
-    y_test = sess.run(tf.one_hot(y_test, 10))
+with tf.Session() as sesh:
+    y_train = sesh.run(tf.one_hot(y_train, 10))
+    y_test = sesh.run(tf.one_hot(y_test, 10))
 
 
 #hyperparameters - parameters that are set and not learnt
-learning_rate = 0.13
-epochs = 1000
-batch_size = 600
+learning_rate = 0.01
+epochs = 10
+batch_size = 1000
 batches = int(x_train.shape[0] / batch_size)
 
 # Y = sigma * (X * W + B)
@@ -51,26 +44,21 @@ batches = int(x_train.shape[0] / batch_size)
 # X is our "flattened / normalized"(from preprocessing) images
 # Y is our "one hot" labels
 
-#declare where the data will flow in
+#actual data
 X = tf.placeholder(tf.float32, [None, 784])
 Y = tf.placeholder(tf.float32, [None, 10])
-#tf.placeholder() -> must be fed with data during tf.Session()'s
 
 #trained(learned) variables
 W = tf.Variable(0.001 * np.random.rand(784, 10).astype(np.float32))
 B = tf.Variable(0.001 * np.random.rand(10).astype(np.float32))
-#tf.Variable() -> can be used in any tf.Session()
-
 
 # graph = categorization of X*W+B
 pred = tf.nn.softmax(tf.add(tf.matmul(X, W), B))
-#This function performs the equivalent of:
-#softmax = tf.exp(logits) / tf.reduce_sum(tf.exp(logits), axis)
-#The softmax "squishes" the inputs so that sum(input) = 1: it's a way of normalizing.
 
 # C = sum (- Y * ln(pred))
 # cost function
 cost = tf.reduce_mean(-tf.reduce_sum(Y * tf.log(pred), axis = 1))
+
 
 #demonstration of the cost function
 '''
@@ -94,38 +82,36 @@ print(r_mean)
 '''
 
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
-start = time.time()
-with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
 
-    #actual training
+with tf.Session() as sesh:
+    sesh.run(tf.global_variables_initializer())
+
     for epoch in range(epochs):
         for i in range(batches):
+            #offset = i * epoch
             x = x_train[i*batch_size: (i+1)*batch_size]
             y = y_train[i*batch_size: (i+1)*batch_size]
-            sess.run(optimizer, feed_dict = {X: x, Y: y})
-            c = sess.run(cost, feed_dict = {X: x, Y: y})
+            #x = x_train[offset: offset + batch_size]
+            #y = y_train[offset: offset + batch_size]
+            sesh.run(optimizer, feed_dict = {X: x, Y: y})
+            c = sesh.run(cost, feed_dict = {X: x, Y: y})
         if not epoch % 1:
-            print(f'epoch:{epoch} cost={c:.10f}')
-    end = time.time()
-    print(end - start)    
-    #saving learnt data
-    weigths = sess.run(W) 
-    biases = sess.run(B)
-    np.savetxt("Weitghs.txt", weigths, fmt='%.8f')
-    np.savetxt("Biases.txt", biases, fmt='%.8f')
+            print(f'epoch:{epoch} cost={c:.5f}')
+    
+    weigths = sesh.run(W) 
+    biases = sesh.run(B)
+    np.savetxt("Python\\IDK\\Weitghs.txt", weigths, fmt='%.8f')
+    np.savetxt("Python\\IDK\\Biases.txt", biases, fmt='%.8f')
 
-    #calculate accurary
     correct_pred = tf.equal(tf.argmax(pred, 1), tf.argmax(Y, 1))
     accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
     accuracy2 = accuracy.eval({X: x_test, Y: y_test})
     print(accuracy2)
 
-    #viewing few tests
-    nr_of_tests_to_show = 5
+    nr_of_tests_to_show = 30
     fig, axes = plt.subplots(1, nr_of_tests_to_show, figsize = (8, 4))
     for img, ax in zip(x_test[:nr_of_tests_to_show], axes):
-        guess = np.argmax(sess.run(pred, feed_dict = {X: [img]}))
+        guess = np.argmax(sesh.run(pred, feed_dict = {X: [img]}))
         ax.set_title(guess)
         ax.imshow(img.reshape((28,28)))
         ax.axis('off')

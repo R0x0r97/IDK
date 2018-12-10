@@ -1,7 +1,8 @@
 '''
 GUI class
 '''
-from evaluate import evaluate_input as ev
+from evaluate import evaluate_input
+from formatting import * 
 
 from kivy.app import App
 from kivy.core.window import Window
@@ -55,8 +56,9 @@ class GuiRunnerApp(App):
         #Peter's script should be called here
         imageToMatrix("number.png")
         #Andras's script should be called here
+        output = evaluate_input("matrix.txt")
         #This label shows the output from (Varga) Andras's script
-        self.output_label.text = "1" #Hardcoded "1" for now
+        self.output_label.text = output.astype(str)
         with self.wid.canvas:
             Color(1, 1, 1) #transparent red
             Rectangle(pos = self.wid.pos, size=self.wid.size)
