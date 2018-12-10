@@ -2,7 +2,7 @@ from PIL import Image
 from array import array
 from numpy import *
 
-def imageToMatrix(imagePath, matrixSize = (28, 28)):
+def imageToMatrix(imagePath, outputName, matrixSize = (28, 28)):
 	
 	data = zeros(matrixSize)
 
@@ -13,4 +13,4 @@ def imageToMatrix(imagePath, matrixSize = (28, 28)):
 		for y in range(matrixSize[1]):
 			data[x, y] = pixels[y, x][0]
 
-	savetxt("matrix.txt", data, "%4i")
+	savetxt(outputName, data, "%4i")
