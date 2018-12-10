@@ -7,6 +7,7 @@ https://github.com/markjay4k/Tensorflow-Basics-Series/blob/master/part%202%20-%2
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 
 # Import MNIST data
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
@@ -20,7 +21,7 @@ for img, label, ax in zip(x_train[:4], y_train[:4], axes):
     ax.axis('off')
 plt.show();
 '''
-
+#rand
 # data shape
 '''
 print(f'train images: {x_train.shape}')
@@ -39,9 +40,9 @@ with tf.Session() as sess:
 
 
 #hyperparameters - parameters that are set and not learnt
-learning_rate = 0.01
-epochs = 10
-batch_size = 1000
+learning_rate = 0.13
+epochs = 1000
+batch_size = 600
 batches = int(x_train.shape[0] / batch_size)
 
 # Y = sigma * (X * W + B)
@@ -93,7 +94,7 @@ print(r_mean)
 '''
 
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
-
+start = time.time()
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
 
@@ -105,13 +106,14 @@ with tf.Session() as sess:
             sess.run(optimizer, feed_dict = {X: x, Y: y})
             c = sess.run(cost, feed_dict = {X: x, Y: y})
         if not epoch % 1:
-            print(f'epoch:{epoch} cost={c:.5f}')
-    
+            print(f'epoch:{epoch} cost={c:.10f}')
+    end = time.time()
+    print(end - start)    
     #saving learnt data
     weigths = sess.run(W) 
     biases = sess.run(B)
-    np.savetxt("Python\\IDK\\Weitghs.txt", weigths, fmt='%.8f')
-    np.savetxt("Python\\IDK\\Biases.txt", biases, fmt='%.8f')
+    np.savetxt("Weitghs.txt", weigths, fmt='%.8f')
+    np.savetxt("Biases.txt", biases, fmt='%.8f')
 
     #calculate accurary
     correct_pred = tf.equal(tf.argmax(pred, 1), tf.argmax(Y, 1))
