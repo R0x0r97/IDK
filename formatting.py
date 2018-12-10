@@ -11,6 +11,6 @@ def imageToMatrix(imagePath, matrixSize = (28, 28)):
 
 	for x in range(matrixSize[0]):
 		for y in range(matrixSize[1]):
-			data[x, y] = pixels[y, x][0] 
-	
+			data[x, y] = pixels[y, x][0]
+
 	savetxt("matrix.txt", data, "%4i")

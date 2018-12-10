@@ -11,6 +11,7 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.stencilview import StencilView
 from kivy.graphics import *
+from formatting import * 
 
 from kivy.lang import Builder
 
