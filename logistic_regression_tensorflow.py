@@ -110,10 +110,10 @@ with tf.Session() as sess:
     end = time.time()
     print(end - start)    
     #saving learnt data
-    weigths = sess.run(W) 
+    weights = sess.run(W) 
     biases = sess.run(B)
-    np.savetxt("Weitghs.txt", weigths, fmt='%.8f')
-    np.savetxt("Biases.txt", biases, fmt='%.8f')
+    np.savetxt("learning\\Weights.txt", weights, fmt='%.8f')
+    np.savetxt("learning\\Biases.txt", biases, fmt='%.8f')
 
     #calculate accurary
     correct_pred = tf.equal(tf.argmax(pred, 1), tf.argmax(Y, 1))

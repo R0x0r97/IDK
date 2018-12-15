@@ -98,10 +98,10 @@ with tf.Session() as sesh:
         if not epoch % 1:
             print(f'epoch:{epoch} cost={c:.5f}')
     
-    weigths = sesh.run(W) 
+    weights = sesh.run(W) 
     biases = sesh.run(B)
-    np.savetxt("Python\\IDK\\Weitghs.txt", weigths, fmt='%.8f')
-    np.savetxt("Python\\IDK\\Biases.txt", biases, fmt='%.8f')
+    np.savetxt("learning\\Weights.txt", weights, fmt='%.8f')
+    np.savetxt("learning\\Biases.txt", biases, fmt='%.8f')
 
     correct_pred = tf.equal(tf.argmax(pred, 1), tf.argmax(Y, 1))
     accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))

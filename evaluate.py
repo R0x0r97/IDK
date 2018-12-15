@@ -5,8 +5,8 @@ def evaluate_input(input_image_name):
     input_image = np.loadtxt(input_image_name, dtype=float)
     input_image = np.absolute(input_image-255)
     input_image = input_image.reshape(1, 784) / 255
-    W = np.loadtxt("Weitghs.txt", dtype=float)
-    B = np.loadtxt("Biases.txt", dtype=float)
+    W = np.loadtxt("learning\\Weights.txt", dtype=float)
+    B = np.loadtxt("learning\\Biases.txt", dtype=float)
     X = tf.placeholder(tf.float64, [None, 784])
     
     pred = tf.nn.softmax(tf.add(tf.matmul(X, W), B))
