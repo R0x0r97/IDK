@@ -47,7 +47,7 @@ Here we can clearly see that students with exam scores that would place them in 
 The script should be able to recognize a given handwritten digit with a reasonable accouracy.
 ### Non-functional requirements
 The graphical user interface should be simple and easy to use. The following wireframe shows how the GUI was specified to look.
-![Wireframe]("https://github.com/R0x0r97/IDK/blob/master/docs/res/wireframe.jpg")
+![Wireframe]("res/wireframe.jpg")
 ### Implementation
 #### Logistic regression applied
 #### System diagram
