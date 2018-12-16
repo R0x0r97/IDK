@@ -14,4 +14,4 @@
     - [Pillow](https://pillow.readthedocs.io/en/5.3.x/installation.html) for image processing
     - [tensorflow](https://www.tensorflow.org/install/) helps with the learning
     - [matplotlib.pyplot](https://matplotlib.org/users/installing.html) plotting to visualize
-- You can find the project's documentation [here](https://github.com/R0x0r97/IDK/blob/master/docs/documentation.md)
+- You can find the project's documentation [here](https://github.com/R0x0r97/IDK/blob/master/docs/documentation-pandoc.pdf)
