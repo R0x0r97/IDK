@@ -59,7 +59,7 @@ class GuiRunnerApp(App):
         self.wid_2.export_to_png("res\\number1.png")
         self.wid_3.export_to_png("res\\number2.png")
         
-        output = 0
+        output = ""
 
         for i in range(3):
             
@@ -70,9 +70,9 @@ class GuiRunnerApp(App):
             PNGToIDX(imName, matName)
             output_cpy = evaluate_input(matName) 
             print(output_cpy)
-            output = output*10 + output_cpy
+            output = output + "" + str(output_cpy)
 
-        self.output_label.text = output.astype(str)
+        self.output_label.text = output
 
         self.clear(self.wid_1)
         self.clear(self.wid_2)

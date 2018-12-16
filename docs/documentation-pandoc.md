@@ -21,9 +21,25 @@ The aim of this project is to recognize handwritten digits (drawn via a mouse on
 ### The stakeholders
 This project is only a proof-of-concept. It is aimed at other individuals interested in machine learning, hoping that they might learn a thing or two from it.
 
-### System requirements
-- RAM: at least 200 MB
-- CPU: any CPU made after the year 2000
+### Requirements
+
+1.	Python version 3.6.x is required.
+2.	Used libraries (it is best to use latest version available): 
+	- Kivy for the GUI
+	- Numpy for handling numbers/matrices
+	- Pillow for image processing
+	- Tensorflow helps with the learning
+	- matplotlib.pyplot for plots, visualization
+3.	Recommended system specifications
+	- Running GUI :
+		- RAM : 1 GB
+		- CPU : any AMD and Intel CPU made after the year 2008
+		- GPU : any GPU capable of rendering a 800*600 window
+	- Learning : 
+		- RAM : 1.5 GB
+		- CPU : any AMD and Intel CPU with at least 4 threads and made after the year 2008
+		- GPU : Any Nvidia GPU capable of NVIDIA cuDNN v5.1 and NVIDIA CUDA 7.5
+
 
 ### Theoretical background
 
@@ -83,14 +99,42 @@ The graphical user interface should be simple and easy to use. The following wir
 
 #### Logistic regression applied
 
+##### Dataset
+The dataset used for learning is the MNIST handwritten digits dataset. This dataset consists of handwritten digits and has a training set of 60,000 examples, and a test set of 10,000 examples.
+It has the following characteristics:
+
+- Each image has a resolution of 28*28 pixels.
+- The images are bicolored.
+- The database is available from [**this page**](http://yann.lecun.com/exdb/mnist/).
+
+##### Featureset
+In our case the featureset consists of 784 numbers arranged in a vector. This vector's size comes from the number of pixels on the input image, 28*28 = 784. The values are taken from each pixel’s brightness, then converted down from 0-255 to 0-1 for easier usage.
+
+##### Weights
+
+$Weights$ is the matrix which is set in the learning stage and used in the evaluation stage. It has 10 columns and 784 rows, each of these columns contain one number's featureset.
+
+##### Machine Learning
+- We used the functions implemented in the Tensorflow library
+- Examples: nn.softmax(), add(), matmul(), reduce_mean() etc.
+- For the optimizer we used the implemented GradientDescentOptimizer()
+
+
 #### System diagram
 Our system consists of python scripts. The following system diagram describes its operation. _See figure \ref{sys-diagram}_
 
 ![System diagram \label{sys-diagram}](res/System_diagram.jpg)
 
-#### Machine learning
-
 #### Data formatting
+
+Before feeding the algorithm, some enhancements are applied to the input image. The aim of these enhancements are to convert the input image to the required format for the algorithm, and to eliminate some of the problems which could arise when the user draws on the canvas. Some of these problems include:
+
+- The user leaves the canvas blank.
+- The user draws the number too small relative to the size of the canvas.
+- The user draws the number with an offset to the center of the canvas.
+
+The solution implemented for the problems above consists of applying anti-aliasing to the input image, trimming the image around the number with a small border, then resizing it to 28 by 28 pixels. Finally a matrix containing the single-channeled information about the pixels of the image is extracted to a text file, which will be processed by the recognition algorithm.
+The functions handling these task are included in the formatting.py script.
 
 #### Graphical User Interface
 The task was to create a Graphical User Interface (GUI) based on the specified wireframe. The kivy python package was used for achieving this task. The GUI is written in python while also using the features of the kivy language. This script provides the skeleton for the whole project. This is where the other scripts are invoked (formatting.py and evaluate.py).
