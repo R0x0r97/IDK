@@ -22,13 +22,13 @@ The machine learning model used for this project is: **logistic regression**. Th
 This model, as any other machine learning model, tries to fit the dataset with a polynomial.
 Given a dataset and classes A and B, this model can predict with a certain probability that a value X is in class A or class B.
 #### The hypothesis function
-The hypothesis function for this model is 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$h_\theta(x)=g(\theta^Tx)$
-The only difference between this hypothesis function and the linear regression's hypothesis function is the use of the $g(z)=\frac{1}{1 + \mathrm{e}^{-z}}$ function
+The hypothesis function for this model is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$h_\theta(x)=g(\theta^Tx)$ <br>
+The only difference between this hypothesis function and the linear regression's hypothesis function is the use of the <br>$g(z)=\frac{1}{1 + \mathrm{e}^{-z}}$<br> function
 The $g$ function, also known as the sigmoid or logistic function, makes it so that our output is in the $(0,1)$ interval. Otherwise we could not interpret our output as a probability.
 #### The cost function
-The cost function $J$ is 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$J(\theta)=-\frac{1}{m}*[\sum_{i=1}^{m} y^{(i)}log h_\theta(x ^{(i)}) + (1 - y^{(i)})log (1-h_\theta(x ^{(i)}))]$
+The cost function $J$ is <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$J(\theta)=-\frac{1}{m}*[\sum_{i=1}^{m} y^{(i)}log h_\theta(x ^{(i)}) + (1 - y^{(i)})log (1-h_\theta(x ^{(i)}))]$ <br>
 The actual learning part of this algorithm is minimizing this cost function. We take the $\theta$ value at the function's minimum and use that for our hypothesis function.
 #### Prediction
 If the output of our hypothesis function is $>0.5$ then we predict 1, otherwise we predict 0. This means that we can only classify a given value into two classes.
@@ -37,17 +37,17 @@ In our case we need to classify the values in 10 different classes {$0,1,2,3,4,5
 $max(h_\theta^0(x),h_\theta^1(x),h_\theta^2(x),h_\theta^3(x),h_\theta^4(x),h_\theta^5(x),h_\theta^6(x),h_\theta^7(x),h_\theta^8(x),h_\theta^9(x))$
 #### Illustrative example
 _This example was taken from Andrew NG's Machine Learning Coursera course, which can be found [here](https://www.coursera.org/learn/machine-learning)_
-We have a dataset with two features: exam1 score and exam2 score and a pass/fail label based on these exam scores.
-![Dataset]("https://github.com/R0x0r97/IDK/blob/master/docs/res/ex_data_students.JPG")
-When we minimize the cost function $J$ the $\theta$ values we get we can use for the hyptothesis function $h$ to predict whether a student will pass, based on his two exam scores.
+We have a dataset with two features: exam1 score and exam2 score and an admitted/not admitted label based on these exam scores.
+![Dataset](https://github.com/R0x0r97/IDK/blob/master/docs/res/ex_data_students.JPG)<br>
+When we minimize the cost function J the theta values we get we can use for the hyptothesis function $h$ to predict whether a student will be admitted, based on his two exam scores.
 If we were to plot the hypothesis function, it would look as such:
-![Fitted dataset]("https://github.com/R0x0r97/IDK/blob/master/docs/res/ex_data_students_func.JPG")
-Here we can clearly see that students with exam scores that would place them in the upper-right part of the plot, have a high chance of passing, while the students in the lower-left corner have a high chance of failing.
+![Fitted dataset](https://github.com/R0x0r97/IDK/blob/master/docs/res/ex_data_students_func.JPG)<br>
+Here we can clearly see that students with exam scores that would place them in the upper-right part of the plot, have a high chance of admittance, while the students in the lower-left corner have a high chance of not being admitted.
 ### Functional requirements
 The script should be able to recognize a given handwritten digit with a reasonable accouracy.
 ### Non-functional requirements
 The graphical user interface should be simple and easy to use. The following wireframe shows how the GUI was specified to look.
-![Wireframe]("res/wireframe.jpg")
+![Wireframe](https://github.com/R0x0r97/IDK/blob/master/docs/res/wireframe.jpg)
 ### Implementation
 #### Logistic regression applied
 #### System diagram
@@ -60,9 +60,9 @@ The task was to create a GUI based on the specified wireframe. The kivy python p
 This GUI provides a three separate canvases to draw on. By clicking the 'Save' button, the drawings on the canvases get converted to png image files and are save to the res folder
 ### User guide
 After opening the application, it becomes possible to draw on each of the three canvases. 
-![Welcome](https://github.com/R0x0r97/IDK/blob/master/docs/res/gui_plain_H.jpg)
+![Welcome](https://github.com/R0x0r97/IDK/blob/master/docs/res/gui_plain_H.jpg)<br>
 It is not obligatory to draw on every canvas.
 After the drawing took place, the 'Save' button should be pushed.
-![Save](https://github.com/R0x0r97/IDK/blob/master/docs/res/gui_drawn_H.jpg)
+![Save](https://github.com/R0x0r97/IDK/blob/master/docs/res/gui_drawn_H.jpg)<br>
 After the 'Save' button was pushed, the result gets displayed in the lower-left corner.
 ![Result](https://github.com/R0x0r97/IDK/blob/master/docs/res/gui_result_H.jpg)
