@@ -67,7 +67,9 @@ def PNGToIDX(imagePath, outputName, matrixSize = (28, 28)):
 	
 	data = zeros(matrixSize)
 
-	pixels = trim(applyAntiAlias(Image.open(imagePath)), 10).resize(matrixSize).load()
+	image = trim(applyAntiAlias(Image.open(imagePath)), 10).resize(matrixSize)
+	image.show()
+	pixels = image.load()
 
 	for x in range(matrixSize[0]):
 		for y in range(matrixSize[1]):
