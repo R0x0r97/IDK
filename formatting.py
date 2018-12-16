@@ -4,6 +4,16 @@ from numpy import savetxt
 from numpy import zeros
 from math import floor
 
+def isBlank(imagePath):
+	image = Image.open(imagePath)
+	pixels = image.load()
+
+	for x in range(image.size[0]):
+		for y in range(image.size[1]):
+			if (pixels[x, y][0] != 255):
+				return False
+	return True
+
 def applyAntiAlias(image):
 	(width, height) = image.size
 	image = image.resize((width * 2, height * 2))
@@ -64,5 +74,3 @@ def PNGToIDX(imagePath, outputName, matrixSize = (28, 28)):
 			data[x, y] = pixels[y, x][0]
 
 	savetxt(outputName, data, "%4i")
-
-PNGToIDX("number.png", "matrix.txt")
