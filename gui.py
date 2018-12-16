@@ -62,7 +62,10 @@ class GuiRunnerApp(App):
         output = 0
 
         for i in range(3):
+            
             imName = "res\\number" + str(i) + ".png"
+            if isBlank(imName) == True:
+                continue
             matName = "res\\matrix" + str(i) + ".txt"
             PNGToIDX(imName, matName)
             output_cpy = evaluate_input(matName) 
