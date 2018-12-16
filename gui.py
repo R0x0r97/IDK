@@ -64,7 +64,7 @@ class GuiRunnerApp(App):
         for i in range(3):
             imName = "res\\number" + str(i) + ".png"
             matName = "res\\matrix" + str(i) + ".txt"
-            imageToMatrix(imName, matName)
+            PNGToIDX(imName, matName)
             output_cpy = evaluate_input(matName) 
             print(output_cpy)
             output = output*10 + output_cpy
