@@ -75,7 +75,7 @@ Here we can clearly see that students with exam scores that would place them in 
 The script should be able to recognize a given handwritten digit with a reasonable accuracy.
 
 ### Non-functional requirements
-The graphical user interface should be simple and easy to use. The following wireframe shows how the GUI was specified to look. _See figure \ref{wireframe}
+The graphical user interface should be simple and easy to use. The following wireframe shows how the GUI was specified to look. _See figure \ref{wireframe}_
 
 ![Wireframe \label{wireframe}](res/wireframe.jpg)
 
@@ -100,13 +100,13 @@ This GUI provides three separate canvases to draw on. By clicking the 'Save' but
 ### User guide
 After opening the application, it becomes possible to draw on each of the three canvases. _Figure \ref{gui-welcome}_
 
-![Welcome \label{gui-welcome}](res/gui_plain_H.jpg)
+![_Opening screen_ \label{gui-welcome}](res/gui_plain_H.jpg)
 
 It is not obligatory to draw on every canvas.
 After the drawing took place, the 'Save' button should be pushed. _Figure \ref{gui-save}_
 
-![Save \label{gui-save}](res/gui_drawn_H.jpg)
+![_Save button_ \label{gui-save}](res/gui_drawn_H.jpg)
 
 After the 'Save' button was pushed, the result gets displayed in the lower-left corner. _Figure \ref{gui-res}_
 
-![Result \label{gui-res}](res/gui_result_H.jpg)
+![_The result_ \label{gui-res}](res/gui_result_H.jpg)
